@@ -10,7 +10,7 @@ indent: true
 Jest was introduced by Facebook for testing Javascript and React applications. It is one of the more popular ways to test React applications.
 Jest comes with it's own test runner, you can call Jest from your command line to run all of your tests. 
 
-#Setting Up Jest
+# Setting Up Jest
 To install jest in your Next.JS project, run the following command:
 ```
 npm install --save-dev jest
@@ -39,7 +39,7 @@ This allows us to run our entire jest test suite with:
 ```
 npmrun test:jest
 ```
-#Setting up your first Jest Test
+# Setting up your first Jest Test
 
 Let's start by writing a test for a function that returns the product of two numbers. This function is located in multiply.js.
 ```
