@@ -66,3 +66,51 @@ PASS  ./multiply.test.js
 
 This test made use of ``expect`` and ``to be`` to test if two values were identical. Jest has additional matchers that allow us to test exceptions, strings and more.
 
+Here's another example that tests if a function reformats emails and throws an exception when we expect it to.
+
+We create a file email.js to reformat @umail.ucsb.edu emails to @ucsb.edu.
+
+```
+function throwError(message) {
+  throw new Error(message);
+}
+
+export function reformatEmail(email) {
+  typeof email === "string" || throwError("email should be of type string");
+  email || throwError("email should not be an empty string");
+  return email.replace("@umail.ucsb.edu", "@ucsb.edu");
+}
+```
+We expect this to reformat all umail email addresses as well as throw expections when the function is passed empty strings or a variable that is not a string.
+
+The test is defined below:
+```
+import { reformatEmail } from "../utils/email";
+
+describe("utils/email", () => {
+  describe("reformatEmail", () => {
+    it("converts @umail.ucsb.edu to @ucsb.edu", () => {
+      expect(reformatEmail("tkomarlu@umail.ucsb.edu")).toBe(
+        "tkomarlu@ucsb.edu"
+      );
+    });
+
+    it("throws when receiving invalid inputs", () => {
+      expect(() => {
+        reformatEmail(42);
+      }).toThrow("email should be of type string");
+    });
+
+    it("throws when receiving invalid inputs", () => {
+      expect(() => {
+        reformatEmail("");
+      }).toThrow("email should not be an empty string");
+    });
+  });
+});
+
+```
+Here we use ``expect`` and ``toBe`` to verify that the expected and actual return values are identical. We also make use of ``toThrow``to test that the function throws an error when it's called.
+
+# Further Information on Matchers
+* https://jestjs.io/docs/en/using-matchers
